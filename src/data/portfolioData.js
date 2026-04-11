@@ -3,14 +3,14 @@ export const personalDetails = {
   role: "Frontend Developer",
   tagline: "I build modern, engaging, and performant web applications.",
   about: "I am Michael Okpara, a passionate Frontend Developer obsessed with minimal, pixel-perfect designs. I blend technical skills with a keen eye for aesthetics to create products that don't just function flawlessly, but also leave a lasting impression.",
-  resumeLink: "/resume.pdf", 
-  email: "hello@michaelokpara.dev",
+  resumeLink: "/resume.pdf",
+  email: "okparachukwukamichael@gmail.com",
   copyrightYear: new Date().getFullYear(),
 };
 
 export const socialLinks = [
   { platform: "Email", url: `mailto:${personalDetails.email}`, handle: personalDetails.email },
-  { platform: "LinkedIn", url: "https://linkedin.com/in/michaelokpara", handle: "@michaelokpara" },
+  { platform: "LinkedIn", url: "https://linkedin.com/in/okpara-michael-b2726321a", handle: "okpara-michael" },
   { platform: "GitHub", url: "https://github.com/michaelokpara", handle: "@michaelokpara" }
 ];
 
