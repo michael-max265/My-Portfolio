@@ -13,10 +13,10 @@ const Contact = () => {
     setIsSubmitting(true);
     
     emailjs.sendForm(
-      import.meta.env.VITE_EMAILJS_SERVICE_ID,
-      import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+      'service_7ewymsv',
+      'template_w3rkqjs',
       form.current,
-      import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      'RrmEUJAYAFkEDE6dG'
     )
     .then((result) => {
         setIsSubmitting(false);
