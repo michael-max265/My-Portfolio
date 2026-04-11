@@ -13,7 +13,7 @@ const Hero = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
         >
           <h1 style={titleStyle}>
-            Hi, I'm {personalDetails.name.split(' ')[0]}. 
+            <span style={{ whiteSpace: 'nowrap' }}>Hi, I'm {personalDetails.name.split(' ')[0]}.</span> 
             <br />
             <motion.span 
               className="text-gradient"
@@ -65,6 +65,21 @@ const Hero = () => {
           transition={{ duration: 1, delay: 0.4 }}
         >
           <div style={glowingOrbStyle}></div>
+          <motion.div
+            style={floatingCardStyle}
+            animate={{ 
+              y: [0, -20, 0],
+              rotateZ: [0, 2, -1, 0]
+            }}
+            transition={{
+              duration: 5,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          >
+            <div style={codeIconStyle}>&lt; /&gt;</div>
+            <div style={floatingTextStyle}>Frontend Developer</div>
+          </motion.div>
         </motion.div>
       </div>
     </section>
@@ -92,8 +107,8 @@ const contentStyle = {
 };
 
 const titleStyle = {
-  fontSize: 'clamp(3rem, 5vw, 4.5rem)',
-  lineHeight: '1.1',
+  fontSize: 'clamp(2.2rem, 5vw, 4.5rem)',
+  lineHeight: '1.2',
   fontWeight: '800',
   marginBottom: '1.5rem',
   letterSpacing: '-1px'
@@ -152,6 +167,41 @@ const glowingOrbStyle = {
   filter: 'blur(80px)',
   opacity: '0.6',
   animation: 'pulse 8s infinite alternate'
+};
+
+const floatingCardStyle = {
+  position: 'absolute',
+  width: '240px',
+  height: '240px',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+  borderRadius: '24px',
+  border: '1px solid rgba(255, 255, 255, 0.15)',
+  background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01))',
+  backdropFilter: 'blur(16px)',
+  WebkitBackdropFilter: 'blur(16px)',
+  boxShadow: '0 20px 40px rgba(0, 0, 0, 0.4), inset 0 0 0 1px rgba(255, 255, 255, 0.05)',
+};
+
+const codeIconStyle = {
+  fontSize: '4.5rem',
+  fontWeight: '800',
+  fontFamily: 'monospace',
+  marginBottom: '0.8rem',
+  background: 'var(--gradient-vibrant)',
+  WebkitBackgroundClip: 'text',
+  WebkitTextFillColor: 'transparent',
+  textShadow: '0 0 30px rgba(139, 92, 246, 0.3)',
+};
+
+const floatingTextStyle = {
+  fontSize: '0.85rem',
+  fontWeight: '600',
+  color: 'var(--text-secondary)',
+  letterSpacing: '3px',
+  textTransform: 'uppercase'
 };
 
 export default Hero;
