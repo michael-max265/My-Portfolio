@@ -11,7 +11,7 @@ export const personalDetails = {
 export const socialLinks = [
   { platform: "Email", url: `mailto:${personalDetails.email}`, handle: personalDetails.email },
   { platform: "LinkedIn", url: "https://linkedin.com/in/okpara-michael-b2726321a", handle: "okpara-michael" },
-  { platform: "GitHub", url: "https://github.com/michaelokpara", handle: "@michaelokpara" }
+  { platform: "GitHub", url: "https://github.com/michael-max265", handle: "@michael-max265" }
 ];
 
 export const techStack = [
