@@ -1,20 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { socialLinks } from '../data/portfolioData';
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const form = useRef();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Simulate network request
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSuccess(true);
-      setTimeout(() => setIsSuccess(false), 5000); // reset after 5s
-    }, 1500);
+    
+    emailjs.sendForm(
+      import.meta.env.VITE_EMAILJS_SERVICE_ID,
+      import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+      form.current,
+      import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+    )
+    .then((result) => {
+        setIsSubmitting(false);
+        setIsSuccess(true);
+        form.current.reset();
+        setTimeout(() => setIsSuccess(false), 5000);
+    }, (error) => {
+        setIsSubmitting(false);
+        console.error(error.text);
+        alert("Something went wrong. Please check your EmailJS configurations.");
+    });
   };
 
   return (
@@ -43,6 +56,7 @@ const Contact = () => {
         </motion.div>
         
         <motion.form 
+          ref={form}
           onSubmit={handleSubmit}
           style={formStyle} 
           className="glass"
@@ -53,15 +67,15 @@ const Contact = () => {
         >
           <div style={formGroupStyle}>
             <label style={labelStyle}>Name</label>
-            <input type="text" required className="form-input" placeholder="Your name" />
+            <input type="text" name="user_name" required className="form-input" placeholder="Your name" />
           </div>
           <div style={formGroupStyle}>
             <label style={labelStyle}>Email</label>
-            <input type="email" required className="form-input" placeholder="you@example.com" />
+            <input type="email" name="user_email" required className="form-input" placeholder="you@example.com" />
           </div>
           <div style={formGroupStyle}>
             <label style={labelStyle}>Message</label>
-            <textarea required className="form-input" style={{minHeight: '150px', resize: 'vertical'}} placeholder="Say hello..."></textarea>
+            <textarea required name="message" className="form-input" style={{minHeight: '150px', resize: 'vertical'}} placeholder="Say hello..."></textarea>
           </div>
           
           {isSuccess ? (
