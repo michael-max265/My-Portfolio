@@ -102,7 +102,8 @@ const heroContainerStyle = {
 };
 
 const contentStyle = {
-  flex: '1 1 500px',
+  flex: '1 1 45%',
+  minWidth: '300px',
   maxWidth: '600px'
 };
 
@@ -151,7 +152,8 @@ const secondaryButtonStyle = {
 };
 
 const visualContainerStyle = {
-  flex: '1 1 400px',
+  flex: '1 1 45%',
+  minWidth: '300px',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',

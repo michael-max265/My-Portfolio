@@ -15,8 +15,8 @@ const Contact = () => {
     emailjs.sendForm(
       'service_7ewymsv',
       'template_w3rkqjs',
-      form.current,
-      'RrmEUJAYAFkEDE6dG'
+      e.target,
+      { publicKey: 'RrmEUJAYAFkEDE6dG' }
     )
     .then((result) => {
         setIsSubmitting(false);
