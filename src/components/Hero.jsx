@@ -48,9 +48,9 @@ const Hero = () => {
             <motion.a 
               href={personalDetails.resumeLink} 
               target="_blank"
-              style={{...secondaryButtonStyle, borderColor: 'var(--accent-purple)'}} 
+              style={{...secondaryButtonStyle, borderColor: 'var(--accent-secondary)'}} 
               className="glass"
-              whileHover={{ scale: 1.05, backgroundColor: 'rgba(139, 92, 246, 0.1)' }}
+              whileHover={{ scale: 1.05, backgroundColor: 'rgba(41, 121, 255, 0.1)' }}
               whileTap={{ scale: 0.95 }}
             >
               &#8595; Download Resume
@@ -134,7 +134,7 @@ const primaryButtonStyle = {
   padding: '0.875rem 1.5rem',
   borderRadius: 'var(--radius-md)',
   fontWeight: '600',
-  boxShadow: '0 4px 14px rgba(139, 92, 246, 0.4)',
+  boxShadow: '0 4px 14px rgba(41, 121, 255, 0.4)',
   display: 'inline-flex',
   alignItems: 'center',
   textDecoration: 'none'
@@ -195,7 +195,7 @@ const codeIconStyle = {
   background: 'var(--gradient-vibrant)',
   WebkitBackgroundClip: 'text',
   WebkitTextFillColor: 'transparent',
-  textShadow: '0 0 30px rgba(139, 92, 246, 0.3)',
+  textShadow: '0 0 30px rgba(41, 121, 255, 0.3)',
 };
 
 const floatingTextStyle = {

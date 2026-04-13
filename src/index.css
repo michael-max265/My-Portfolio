@@ -1,14 +1,14 @@
 :root {
   /* Design Tokens */
-  --bg-primary: #0a0a0a;
-  --bg-secondary: #171717;
+  --bg-primary: #0b0f19;
+  --bg-secondary: #111827;
   --text-primary: #f8fafc;
   --text-secondary: #94a3b8;
-  --accent-blue: #3b82f6;
-  --accent-purple: #8b5cf6;
-  --accent-pink: #ec4899;
+  --accent-primary: #00e5ff;
+  --accent-secondary: #2979ff;
+  --accent-tertiary: #651fff;
   
-  --gradient-vibrant: linear-gradient(135deg, var(--accent-blue), var(--accent-purple), var(--accent-pink));
+  --gradient-vibrant: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary), var(--accent-tertiary));
   
   --font-main: 'Inter', system-ui, sans-serif;
   
@@ -69,7 +69,7 @@ a {
 }
 
 a:hover {
-  color: var(--accent-purple);
+  color: var(--accent-secondary);
 }
 
 button {
@@ -113,8 +113,8 @@ input, textarea {
 }
 
 .form-input:focus {
-  border-color: var(--accent-purple);
-  box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.2);
+  border-color: var(--accent-secondary);
+  box-shadow: 0 0 0 2px rgba(41, 121, 255, 0.2);
 }
 
 @media (max-width: 768px) {

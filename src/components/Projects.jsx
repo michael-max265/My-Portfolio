@@ -42,7 +42,7 @@ const Projects = () => {
               className="glass" 
               style={cardStyle}
               variants={itemVariants}
-              whileHover={{ y: -8, boxShadow: '0 10px 30px rgba(139, 92, 246, 0.2)' }}
+              whileHover={{ y: -8, boxShadow: '0 10px 30px rgba(41, 121, 255, 0.2)' }}
             >
               <div style={imagePlaceholderStyle}>
                 {project.image && <img src={project.image} alt={project.title} style={{width: '100%', height: '100%', objectFit: 'cover'}} />}
@@ -58,7 +58,7 @@ const Projects = () => {
                 <motion.a 
                   href={project.link} 
                   style={linkStyle}
-                  whileHover={{ x: 5, color: 'var(--accent-purple)' }}
+                  whileHover={{ x: 5, color: 'var(--accent-secondary)' }}
                 >
                   View Project &rarr;
                 </motion.a>
@@ -96,7 +96,7 @@ const cardStyle = {
 
 const imagePlaceholderStyle = {
   height: '200px',
-  background: 'linear-gradient(45deg, rgba(23, 23, 23, 0.8), rgba(139, 92, 246, 0.2))',
+  background: 'linear-gradient(45deg, rgba(23, 23, 23, 0.8), rgba(41, 121, 255, 0.2))',
   borderBottom: '1px solid rgba(255, 255, 255, 0.05)'
 };
 
@@ -128,8 +128,8 @@ const tagsContainerStyle = {
 
 const tagStyle = {
   fontSize: '0.8rem',
-  color: 'var(--accent-purple)',
-  background: 'rgba(139, 92, 246, 0.1)',
+  color: 'var(--accent-secondary)',
+  background: 'rgba(41, 121, 255, 0.1)',
   padding: '0.2rem 0.6rem',
   borderRadius: 'var(--radius-sm)'
 };
