@@ -36,28 +36,12 @@ export const projectsData = [
     image: '/perfume.png'
   },
   {
-    id: 1,
-    title: 'E-commerce Platform',
-    description: 'A modern shopping experience built with React and Redux, featuring secure Stripe payments and a beautiful cart interface.',
-    tags: ['React', 'Commerce.js', 'Stripe'],
-    link: 'https://github.com/michaelokpara/ecommerce',
-    image: '/ecommerce.png'
-  },
-  {
     id: 2,
     title: 'Dashboard Analytics',
     description: 'Admin dashboard with real-time data visualization charts, customizable widgets, and responsive dark mode UI.',
     tags: ['Vite', 'Chart.js', 'Tailwind'],
     link: 'https://github.com/michaelokpara/dashboard',
     image: '/dashboard.png'
-  },
-  {
-    id: 3,
-    title: 'Social App UI',
-    description: 'A sleek, dark-mode social media application interface with micro-interactions, clean typography, and nested routing.',
-    tags: ['React', 'Framer Motion', 'CSS Modules'],
-    link: 'https://github.com/michaelokpara/social-app',
-    image: '/social.png'
   }
 ];
 

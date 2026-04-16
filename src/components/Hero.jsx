@@ -48,6 +48,7 @@ const Hero = () => {
             <motion.a 
               href={personalDetails.resumeLink} 
               target="_blank"
+              download
               style={{...secondaryButtonStyle, borderColor: 'var(--accent-secondary)'}} 
               className="glass"
               whileHover={{ scale: 1.05, backgroundColor: 'rgba(41, 121, 255, 0.1)' }}
