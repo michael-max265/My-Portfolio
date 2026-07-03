@@ -20,6 +20,14 @@ export const techStack = [
 
 export const projectsData = [
   {
+    id: 6,
+    title: 'Car Rental & 3D Showroom',
+    description: 'A premium full-stack car rental platform with an interactive 3D WebGL showroom, integrated multi-payment core (Stripe, Paystack, Flutterwave), and a complete admin fleet analytics dashboard.',
+    tags: ['React', 'Three.js', 'Node.js', 'Express', 'Firebase', 'Stripe', 'Zustand'],
+    link: 'https://github.com/michael-max265/Car_Rentals',
+    image: '/rentals.png'
+  },
+  {
     id: 5,
     title: 'Glamour Gallery',
     description: 'A beautifully designed masonry image gallery showcasing fashion, beauty, and lifestyle aesthetics with a modern, responsive UI.',
