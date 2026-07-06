@@ -41,7 +41,7 @@ const Navigation = () => {
         </ul>
 
         {/* Mobile Hamburger Button */}
-        <div
+        <button
           className="mobile-nav-btn"
           style={mobileBtnStyle}
           onClick={() => setIsOpen(!isOpen)}
@@ -60,7 +60,7 @@ const Navigation = () => {
             ...burgerLineStyle,
             transform: isOpen ? 'translateY(0) rotate(-45deg)' : 'translateY(8px) rotate(0deg)',
           }} />
-        </div>
+        </button>
       </div>
 
       {/* Mobile Menu Overlay */}
@@ -131,7 +131,11 @@ const mobileBtnStyle = {
   width: '28px',
   height: '20px',
   cursor: 'pointer',
-  zIndex: 2000
+  zIndex: 2000,
+  background: 'transparent',
+  border: 'none',
+  outline: 'none',
+  padding: 0,
 };
 
 const burgerLineStyle = {
