@@ -120,4 +120,38 @@ input, textarea {
 @media (max-width: 768px) {
   .desktop-nav { display: none !important; }
   .mobile-nav-btn { display: flex !important; }
+
+  /* Reduce section padding on mobile */
+  section {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
+
+  /* Fix hero overflow and spacing */
+  #home {
+    padding-top: 60px !important;
+    min-height: auto !important;
+  }
+
+  /* Fix project grid overflow */
+  #projects .container > div {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Tighten contact layout */
+  #contact .container {
+    gap: 2rem !important;
+  }
+
+  /* Reduce title sizes */
+  h2 {
+    font-size: 2rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
 }

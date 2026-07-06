@@ -42,9 +42,21 @@ const Navigation = () => {
 
         {/* Mobile Hamburger Button */}
         <div className="mobile-nav-btn" style={mobileBtnStyle} onClick={() => setIsOpen(!isOpen)}>
-          <div style={{...burgerLineStyle, transform: isOpen ? 'rotate(45deg) translate(5px, 5px)' : 'none'}} />
-          <div style={{...burgerLineStyle, opacity: isOpen ? 0 : 1}} />
-          <div style={{...burgerLineStyle, transform: isOpen ? 'rotate(-45deg) translate(7px, -6px)' : 'none'}} />
+          <motion.div
+            animate={isOpen ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }}
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            style={burgerLineStyle}
+          />
+          <motion.div
+            animate={isOpen ? { opacity: 0, scaleX: 0 } : { opacity: 1, scaleX: 1 }}
+            transition={{ duration: 0.2, ease: 'easeInOut' }}
+            style={burgerLineStyle}
+          />
+          <motion.div
+            animate={isOpen ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }}
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            style={burgerLineStyle}
+          />
         </div>
       </div>
 

@@ -111,12 +111,12 @@ const sectionStyle = {
 const containerStyle = {
   display: 'flex',
   flexWrap: 'wrap',
-  gap: '4rem',
+  gap: '2.5rem',
   justifyContent: 'space-between'
 };
 
 const contentStyle = {
-  flex: '1 1 400px',
+  flex: '1 1 300px',
 };
 
 const sectionTitleStyle = {
@@ -146,7 +146,7 @@ const infoCardStyle = {
 };
 
 const formStyle = {
-  flex: '1 1 400px',
+  flex: '1 1 300px',
   padding: '2rem',
   borderRadius: 'var(--radius-lg)',
   display: 'flex',

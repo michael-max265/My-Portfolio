@@ -104,7 +104,7 @@ const heroContainerStyle = {
 
 const contentStyle = {
   flex: '1 1 45%',
-  minWidth: '300px',
+  minWidth: '280px',
   maxWidth: '600px'
 };
 
@@ -154,12 +154,12 @@ const secondaryButtonStyle = {
 
 const visualContainerStyle = {
   flex: '1 1 45%',
-  minWidth: '300px',
+  minWidth: '250px',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
   position: 'relative',
-  height: '400px'
+  height: '300px'
 };
 
 const glowingOrbStyle = {
