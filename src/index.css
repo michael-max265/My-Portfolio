@@ -119,7 +119,7 @@ input, textarea {
 
 @media (max-width: 768px) {
   .desktop-nav { display: none !important; }
-  .mobile-nav-btn { display: flex !important; }
+  .mobile-nav-btn { display: block !important; }
 
   /* Reduce section padding on mobile */
   section {

@@ -41,22 +41,25 @@ const Navigation = () => {
         </ul>
 
         {/* Mobile Hamburger Button */}
-        <div className="mobile-nav-btn" style={mobileBtnStyle} onClick={() => setIsOpen(!isOpen)}>
-          <motion.div
-            animate={isOpen ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }}
-            transition={{ duration: 0.3, ease: 'easeInOut' }}
-            style={burgerLineStyle}
-          />
-          <motion.div
-            animate={isOpen ? { opacity: 0, scaleX: 0 } : { opacity: 1, scaleX: 1 }}
-            transition={{ duration: 0.2, ease: 'easeInOut' }}
-            style={burgerLineStyle}
-          />
-          <motion.div
-            animate={isOpen ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }}
-            transition={{ duration: 0.3, ease: 'easeInOut' }}
-            style={burgerLineStyle}
-          />
+        <div
+          className="mobile-nav-btn"
+          style={mobileBtnStyle}
+          onClick={() => setIsOpen(!isOpen)}
+          aria-label="Toggle menu"
+        >
+          <span style={{
+            ...burgerLineStyle,
+            transform: isOpen ? 'translateY(0) rotate(45deg)' : 'translateY(-8px) rotate(0deg)',
+          }} />
+          <span style={{
+            ...burgerLineStyle,
+            opacity: isOpen ? 0 : 1,
+            transform: isOpen ? 'scaleX(0)' : 'scaleX(1)',
+          }} />
+          <span style={{
+            ...burgerLineStyle,
+            transform: isOpen ? 'translateY(0) rotate(-45deg)' : 'translateY(8px) rotate(0deg)',
+          }} />
         </div>
       </div>
 
@@ -124,17 +127,23 @@ const desktopLinksStyle = {
 // Handled via CSS hide/show for desktop vs mobile
 const mobileBtnStyle = {
   display: 'none',
-  flexDirection: 'column',
-  gap: '5px',
+  position: 'relative',
+  width: '28px',
+  height: '20px',
   cursor: 'pointer',
   zIndex: 2000
 };
 
 const burgerLineStyle = {
-  width: '25px',
+  position: 'absolute',
+  left: 0,
+  width: '100%',
   height: '2px',
   background: 'var(--text-primary)',
-  transition: 'all 0.3s ease'
+  borderRadius: '2px',
+  transition: 'all 0.35s cubic-bezier(0.4, 0, 0.2, 1)',
+  transformOrigin: 'center',
+  top: '50%',
 };
 
 const mobileOverlayStyle = {
