@@ -24,7 +24,7 @@ export const projectsData = [
     title: 'Car Rental & 3D Showroom',
     description: 'A premium full-stack car rental platform with an interactive 3D WebGL showroom, integrated multi-payment core (Stripe, Paystack, Flutterwave), and a complete admin fleet analytics dashboard.',
     tags: ['React', 'Three.js', 'Node.js', 'Express', 'Firebase', 'Stripe', 'Zustand'],
-    link: 'https://github.com/michael-max265/Car_Rentals',
+    link: 'https://car-rental-client-orcin.vercel.app/',
     image: '/rentals.png'
   },
   {
