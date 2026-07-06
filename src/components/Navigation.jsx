@@ -42,24 +42,13 @@ const Navigation = () => {
 
         {/* Mobile Hamburger Button */}
         <button
-          className="mobile-nav-btn"
-          style={mobileBtnStyle}
+          className={`mobile-nav-btn ${isOpen ? 'open' : ''}`}
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle menu"
         >
-          <span style={{
-            ...burgerLineStyle,
-            transform: isOpen ? 'translateY(0) rotate(45deg)' : 'translateY(-8px) rotate(0deg)',
-          }} />
-          <span style={{
-            ...burgerLineStyle,
-            opacity: isOpen ? 0 : 1,
-            transform: isOpen ? 'scaleX(0)' : 'scaleX(1)',
-          }} />
-          <span style={{
-            ...burgerLineStyle,
-            transform: isOpen ? 'translateY(0) rotate(-45deg)' : 'translateY(8px) rotate(0deg)',
-          }} />
+          <span className="burger-line line-1" />
+          <span className="burger-line line-2" />
+          <span className="burger-line line-3" />
         </button>
       </div>
 
@@ -122,32 +111,6 @@ const desktopLinksStyle = {
   listStyle: 'none',
   fontWeight: '500',
   fontSize: '0.95rem'
-};
-
-// Handled via CSS hide/show for desktop vs mobile
-const mobileBtnStyle = {
-  display: 'none',
-  position: 'relative',
-  width: '28px',
-  height: '20px',
-  cursor: 'pointer',
-  zIndex: 2000,
-  background: 'transparent',
-  border: 'none',
-  outline: 'none',
-  padding: 0,
-};
-
-const burgerLineStyle = {
-  position: 'absolute',
-  left: 0,
-  width: '100%',
-  height: '2px',
-  background: 'var(--text-primary)',
-  borderRadius: '2px',
-  transition: 'all 0.35s cubic-bezier(0.4, 0, 0.2, 1)',
-  transformOrigin: 'center',
-  top: '50%',
 };
 
 const mobileOverlayStyle = {
