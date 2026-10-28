@@ -1,8 +1,8 @@
 export const personalDetails = {
   name: "Michael Okpara",
-  role: "Frontend Developer",
-  tagline: "I build modern, engaging, and performant web applications.",
-  about: "I am Michael Okpara, a passionate Frontend Developer obsessed with minimal, pixel-perfect designs. I blend technical skills with a keen eye for aesthetics to create products that don't just function flawlessly, but also leave a lasting impression.",
+  role: "Fullstack Developer",
+  tagline: "I architect resilient full-stack systems and craft high-performance, engaging web experiences.",
+  about: "I am Michael Okpara, a Fullstack Developer passionate about building complete, production-grade applications. From designing responsive, intuitive frontend user interfaces to architecting scalable backend APIs, database models, and cloud integrations, I focus on clean code, performance, and seamless user experiences.",
   resumeLink: "/resume.pdf",
   email: "okparachukwukamichael@gmail.com",
   copyrightYear: new Date().getFullYear(),
@@ -15,15 +15,15 @@ export const socialLinks = [
 ];
 
 export const techStack = [
-  'React', 'Vite', 'JavaScript (ES6+)', 'TypeScript', 'HTML5/CSS3', 'Framer Motion', 'Git', 'Figma'
+  'React', 'Next.js', 'Node.js', 'Express', 'TypeScript', 'JavaScript (ES6+)', 'PostgreSQL', 'MongoDB', 'REST APIs', 'Tailwind CSS', 'Framer Motion', 'Git'
 ];
 
 export const projectsData = [
   {
     id: 7,
     title: 'MellyStore — Luxury E-Commerce & Atelier',
-    description: 'An editorial luxury womenswear storefront featuring live multi-currency conversion, an intelligent styling concierge, a multi-channel payment sandbox with dynamic BIN detection (Visa, Mastercard, Verve, Apple Pay, NIBSS), digital email receipts, and a PIN-secured atelier admin terminal.',
-    tags: ['React 19', 'TypeScript', 'Tailwind CSS', 'Vite', 'E-Commerce'],
+    description: 'An editorial luxury storefront featuring live multi-currency conversion, an intelligent styling concierge, a multi-channel payment sandbox with dynamic BIN detection (Visa, Mastercard, Verve, Apple Pay, NIBSS), digital email receipts, and a PIN-secured atelier admin terminal.',
+    tags: ['React 19', 'TypeScript', 'Tailwind CSS', 'Vite', 'Fullstack E-Commerce'],
     link: 'https://melly-store-seven.vercel.app/',
     image: '/ecommerce.png'
   },
@@ -47,15 +47,15 @@ export const projectsData = [
     id: 4,
     title: 'Perfume Store',
     description: 'An elegant e-commerce platform for premium fragrances featuring secure authentication, cart management, and a seamless responsive layout.',
-    tags: ['React', 'Vite', 'Google Auth'],
+    tags: ['React', 'Node.js', 'Google Auth', 'Vite'],
     link: 'https://perfume-store-silk-three.vercel.app/',
     image: '/perfume.png'
   },
   {
     id: 2,
     title: 'Dashboard Analytics',
-    description: 'Admin dashboard with real-time data visualization charts, customizable widgets, and responsive dark mode UI.',
-    tags: ['Vite', 'Chart.js', 'Tailwind'],
+    description: 'Fullstack admin dashboard with real-time data visualization charts, customizable widgets, and responsive dark mode UI.',
+    tags: ['React', 'Node.js', 'Chart.js', 'Tailwind CSS'],
     link: 'https://github.com/michaelokpara/dashboard',
     image: '/dashboard.png'
   }

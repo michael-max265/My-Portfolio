@@ -3,10 +3,10 @@ import { motion } from 'framer-motion';
 import { projectsData } from '../data/portfolioData';
 
 const fadeUp = {
-  initial: { opacity: 0, y: 20 },
+  initial: { opacity: 0, y: 22 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true, margin: '-80px' },
-  transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+  transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
 };
 
 const Projects = () => {
@@ -15,8 +15,12 @@ const Projects = () => {
       <div className="container">
 
         <motion.div {...fadeUp}>
-          <p className="section-label">Work</p>
-          <h2 style={headingStyle}>Selected projects</h2>
+          <span className="section-label">Production Portfolio</span>
+          <h2 style={headingStyle}>Featured Fullstack Deployments</h2>
+          <p style={subheadingStyle}>
+            A curated collection of web applications featuring 3D experiences, payment infrastructures, 
+            e-commerce ateliers, and analytical dashboards.
+          </p>
         </motion.div>
 
         <div className="proj-grid" style={gridStyle}>
@@ -28,41 +32,51 @@ const Projects = () => {
               rel="noreferrer"
               className="card"
               style={cardStyle}
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 28 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.45, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.5, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
               whileHover="hover"
             >
-              {/* Image */}
-              <motion.div
-                style={imgWrapStyle}
-                variants={{ hover: { scale: 1.02 } }}
-                transition={{ duration: 0.3 }}
-              >
-                {project.image ? (
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    style={imgStyle}
-                    loading="lazy"
-                  />
-                ) : (
-                  <div style={imgPlaceholderStyle} />
-                )}
-              </motion.div>
+              {/* Image preview with smooth zoom */}
+              <div style={imgWrapStyle}>
+                <motion.div
+                  style={{ width: '100%', height: '100%' }}
+                  variants={{ hover: { scale: 1.05 } }}
+                  transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  {project.image ? (
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      style={imgStyle}
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div style={imgPlaceholderStyle} />
+                  )}
+                </motion.div>
+                <div style={imgOverlayStyle} />
+              </div>
 
               {/* Content */}
               <div style={contentStyle}>
                 <div style={headerRowStyle}>
                   <h3 style={titleStyle}>{project.title}</h3>
-                  <motion.span
-                    style={arrowStyle}
-                    variants={{ hover: { x: 4, y: -4 } }}
+                  <motion.div
+                    style={arrowBoxStyle}
+                    variants={{ 
+                      hover: { 
+                        x: 3, 
+                        y: -3, 
+                        backgroundColor: 'rgba(59, 130, 246, 0.25)',
+                        color: '#60a5fa' 
+                      } 
+                    }}
                     transition={{ duration: 0.2 }}
                   >
                     ↗
-                  </motion.span>
+                  </motion.div>
                 </div>
 
                 <p style={descStyle}>{project.description}</p>
@@ -83,19 +97,27 @@ const Projects = () => {
 };
 
 /* ── Styles ── */
-const sectionStyle = { padding: '6rem 0' };
+const sectionStyle = { padding: '6.5rem 0' };
 
 const headingStyle = {
-  fontSize: 'clamp(1.6rem, 3vw, 2.4rem)',
+  fontSize: 'clamp(1.8rem, 3.2vw, 2.6rem)',
   fontWeight: '800',
-  letterSpacing: '-0.8px',
+  letterSpacing: '-1px',
+  marginBottom: '0.75rem',
+};
+
+const subheadingStyle = {
+  color: 'var(--text-secondary)',
+  fontSize: '1rem',
+  maxWidth: '620px',
   marginBottom: '3rem',
+  lineHeight: '1.7',
 };
 
 const gridStyle = {
   display: 'grid',
-  gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
-  gap: '1.25rem',
+  gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))',
+  gap: '1.75rem',
 };
 
 const cardStyle = {
@@ -105,13 +127,16 @@ const cardStyle = {
   textDecoration: 'none',
   color: 'inherit',
   cursor: 'pointer',
+  height: '100%',
 };
 
 const imgWrapStyle = {
   width: '100%',
   aspectRatio: '16/9',
   overflow: 'hidden',
-  backgroundColor: '#111',
+  backgroundColor: '#0a0e17',
+  position: 'relative',
+  borderBottom: '1px solid var(--border)',
 };
 
 const imgStyle = {
@@ -121,17 +146,24 @@ const imgStyle = {
   display: 'block',
 };
 
+const imgOverlayStyle = {
+  position: 'absolute',
+  inset: 0,
+  background: 'linear-gradient(to top, rgba(19, 28, 49, 0.4) 0%, transparent 60%)',
+  pointerEvents: 'none',
+};
+
 const imgPlaceholderStyle = {
   width: '100%',
   height: '100%',
-  background: '#1a1a1a',
+  background: 'rgba(15, 23, 42, 0.8)',
 };
 
 const contentStyle = {
-  padding: '1.25rem 1.25rem 1.5rem',
+  padding: '1.5rem',
   display: 'flex',
   flexDirection: 'column',
-  gap: '0.6rem',
+  gap: '0.75rem',
   flex: 1,
 };
 
@@ -139,24 +171,33 @@ const headerRowStyle = {
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'flex-start',
-  gap: '0.5rem',
+  gap: '0.75rem',
 };
 
 const titleStyle = {
-  fontSize: '1rem',
-  fontWeight: '600',
+  fontSize: '1.1rem',
+  fontWeight: '700',
   color: 'var(--text-primary)',
   lineHeight: '1.4',
+  letterSpacing: '-0.3px',
 };
 
-const arrowStyle = {
-  fontSize: '1rem',
-  color: 'var(--text-muted)',
+const arrowBoxStyle = {
+  width: '28px',
+  height: '28px',
+  borderRadius: '6px',
+  background: 'rgba(148, 163, 184, 0.08)',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  fontSize: '0.95rem',
+  color: 'var(--text-secondary)',
   flexShrink: 0,
+  transition: 'all 200ms ease',
 };
 
 const descStyle = {
-  fontSize: '0.875rem',
+  fontSize: '0.9rem',
   color: 'var(--text-secondary)',
   lineHeight: '1.65',
   flex: 1,
@@ -165,17 +206,18 @@ const descStyle = {
 const tagsRowStyle = {
   display: 'flex',
   flexWrap: 'wrap',
-  gap: '0.4rem',
+  gap: '0.45rem',
   marginTop: '0.5rem',
 };
 
 const tagStyle = {
-  fontSize: '0.72rem',
+  fontSize: '0.74rem',
   fontFamily: 'var(--font-mono)',
-  color: 'var(--text-muted)',
-  padding: '0.2rem 0.55rem',
-  border: '1px solid var(--border)',
-  borderRadius: '4px',
+  color: '#93c5fd',
+  background: 'rgba(59, 130, 246, 0.1)',
+  padding: '0.25rem 0.65rem',
+  border: '1px solid rgba(59, 130, 246, 0.2)',
+  borderRadius: '6px',
 };
 
 export default Projects;
