@@ -2,112 +2,170 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { techStack, personalDetails } from '../data/portfolioData';
 
+const fadeUp = {
+  initial: { opacity: 0, y: 20 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: '-80px' },
+  transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+};
+
 const About = () => {
   return (
     <section id="about" style={sectionStyle}>
       <div className="container">
-        <motion.h2 
-          style={sectionTitleStyle}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-        >
-          About <span className="text-gradient">Me</span>
-        </motion.h2>
-        
+
+        <motion.div {...fadeUp}>
+          <p className="section-label">About me</p>
+          <h2 style={headingStyle}>
+            The person behind the code
+          </h2>
+        </motion.div>
+
         <div style={gridStyle}>
-          <motion.div 
-            className="glass" 
-            style={cardStyle}
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, delay: 0.1 }}
+
+          {/* Bio */}
+          <motion.div
+            {...fadeUp}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            style={bioColStyle}
           >
-            <h3 style={cardTitleStyle}>The Journey</h3>
-            <p style={textStyle}>
-              {personalDetails.about}
+            <p style={paraStyle}>
+              I'm <strong style={{ color: 'var(--text-primary)' }}>Michael Okpara</strong>, a frontend
+              developer with a thing for minimal design and smooth interactions.
+              I got into coding because I wanted to build things I could actually
+              see — and I never looked back.
             </p>
-          </motion.div>
-          
-          <motion.div 
-            className="glass" 
-            style={cardStyle}
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <h3 style={cardTitleStyle}>Tech Stack</h3>
-            <div style={tagsContainerStyle}>
-              {techStack.map((tech, i) => (
-                <motion.span 
-                  key={tech} 
-                  style={tagStyle}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.3 + (i * 0.1) }}
-                  whileHover={{ y: -3, borderColor: 'rgba(255,255,255,0.3)' }}
-                >
-                  {tech}
-                </motion.span>
+            <p style={{ ...paraStyle, marginTop: '1rem' }}>
+              When I'm not pushing pixels, I'm studying design systems, exploring
+              new web APIs, or picking apart how great products work. I obsess over
+              the details most people don't notice — because I believe that's where
+              the real quality lives.
+            </p>
+
+            <div style={quickFactsStyle}>
+              {facts.map(f => (
+                <div key={f.label} style={factRowStyle}>
+                  <span style={factLabelStyle}>{f.label}</span>
+                  <span style={factValueStyle}>{f.value}</span>
+                </div>
               ))}
             </div>
           </motion.div>
+
+          {/* Stack */}
+          <motion.div
+            {...fadeUp}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            <div className="card" style={stackCardStyle}>
+              <p style={stackHeadStyle}>Tech I work with</p>
+              <div style={tagsStyle}>
+                {techStack.map((tech) => (
+                  <span key={tech} style={tagStyle}>{tech}</span>
+                ))}
+              </div>
+            </div>
+
+            <div className="card" style={{ ...stackCardStyle, marginTop: '1rem' }}>
+              <p style={stackHeadStyle}>Currently learning</p>
+              <div style={tagsStyle}>
+                {['Next.js', 'Node.js / Express', 'PostgreSQL', 'Docker'].map(t => (
+                  <span key={t} style={{ ...tagStyle, borderColor: 'rgba(79,142,255,0.2)', color: 'var(--accent)' }}>{t}</span>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+
         </div>
       </div>
     </section>
   );
 };
 
-const sectionStyle = {
-  padding: '6rem 0',
-};
+const facts = [
+  { label: 'Location',   value: 'Nigeria 🇳🇬' },
+  { label: 'Focus',      value: 'Frontend / UI' },
+  { label: 'Education',  value: 'Self-taught' },
+  { label: 'Status',     value: 'Open to work' },
+];
 
-const sectionTitleStyle = {
-  fontSize: '2.5rem',
+/* ── Styles ── */
+const sectionStyle = { padding: '6rem 0' };
+
+const headingStyle = {
+  fontSize: 'clamp(1.6rem, 3vw, 2.4rem)',
+  fontWeight: '800',
+  letterSpacing: '-0.8px',
   marginBottom: '3rem',
-  textAlign: 'center'
 };
 
 const gridStyle = {
   display: 'grid',
-  gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-  gap: '2rem'
+  gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+  gap: '2.5rem',
+  alignItems: 'start',
 };
 
-const cardStyle = {
-  padding: '2rem',
-  borderRadius: 'var(--radius-lg)'
-};
+const bioColStyle = {};
 
-const cardTitleStyle = {
-  fontSize: '1.5rem',
-  marginBottom: '1rem',
-  color: 'var(--text-primary)'
-};
-
-const textStyle = {
+const paraStyle = {
   color: 'var(--text-secondary)',
-  lineHeight: '1.8'
+  lineHeight: '1.8',
+  fontSize: '0.97rem',
 };
 
-const tagsContainerStyle = {
+const quickFactsStyle = {
+  marginTop: '1.75rem',
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '0.6rem',
+};
+
+const factRowStyle = {
+  display: 'flex',
+  justifyContent: 'space-between',
+  padding: '0.5rem 0',
+  borderBottom: '1px solid var(--border)',
+};
+
+const factLabelStyle = {
+  fontSize: '0.82rem',
+  color: 'var(--text-muted)',
+  fontFamily: 'var(--font-mono)',
+};
+
+const factValueStyle = {
+  fontSize: '0.88rem',
+  color: 'var(--text-primary)',
+  fontWeight: '500',
+};
+
+const stackCardStyle = {
+  padding: '1.5rem',
+};
+
+const stackHeadStyle = {
+  fontSize: '0.78rem',
+  color: 'var(--text-muted)',
+  fontFamily: 'var(--font-mono)',
+  textTransform: 'uppercase',
+  letterSpacing: '0.1em',
+  marginBottom: '1rem',
+};
+
+const tagsStyle = {
   display: 'flex',
   flexWrap: 'wrap',
-  gap: '0.75rem'
+  gap: '0.5rem',
 };
 
 const tagStyle = {
-  background: 'rgba(255, 255, 255, 0.05)',
-  padding: '0.5rem 1rem',
-  borderRadius: 'var(--radius-full)',
-  fontSize: '0.9rem',
+  fontSize: '0.8rem',
   color: 'var(--text-secondary)',
-  border: '1px solid rgba(255, 255, 255, 0.1)',
-  cursor: 'default'
+  padding: '0.3rem 0.75rem',
+  border: '1px solid var(--border)',
+  borderRadius: '4px',
+  fontFamily: 'var(--font-mono)',
 };
 
 export default About;

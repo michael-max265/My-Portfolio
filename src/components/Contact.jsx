@@ -1,191 +1,241 @@
 import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { socialLinks } from '../data/portfolioData';
+import { personalDetails, socialLinks } from '../data/portfolioData';
 import emailjs from '@emailjs/browser';
+
+const fadeUp = {
+  initial: { opacity: 0, y: 20 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: '-80px' },
+  transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+};
 
 const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
+  const [isSuccess, setIsSuccess]       = useState(false);
   const form = useRef();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     emailjs.sendForm(
       'service_7ewymsv',
       'template_w3rkqjs',
       e.target,
       { publicKey: 'RrmEUJAYAFkEDE6dG' }
-    )
-    .then((result) => {
-        setIsSubmitting(false);
-        setIsSuccess(true);
-        form.current.reset();
-        setTimeout(() => setIsSuccess(false), 5000);
+    ).then(() => {
+      setIsSubmitting(false);
+      setIsSuccess(true);
+      form.current.reset();
+      setTimeout(() => setIsSuccess(false), 5000);
     }, (error) => {
-        setIsSubmitting(false);
-        console.error(error.text);
-        alert("Something went wrong. Please check your EmailJS configurations.");
+      setIsSubmitting(false);
+      console.error(error.text);
+      alert('Something went wrong. Please try again.');
     });
   };
 
   return (
     <section id="contact" style={sectionStyle}>
-      <div className="container" style={containerStyle}>
-        <motion.div 
-          style={contentStyle}
-          initial={{ opacity: 0, x: -30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-        >
-          <h2 style={sectionTitleStyle}>Let's <span className="text-gradient">Connect</span></h2>
-          <p style={subtitleStyle}>
-            I'm currently open for new opportunities. Whether you have a question 
-            or just want to say hi, I'll try my best to get back to you!
-          </p>
-          <div style={infoGridStyle}>
-            {socialLinks.map((link) => (
-              <motion.a key={link.platform} href={link.url} target="_blank" rel="noreferrer" style={infoCardStyle} className="glass" whileHover={{ y: -5 }}>
-                <h4>{link.platform}</h4>
-                <p style={{color: 'var(--text-secondary)', wordBreak: 'break-all'}}>{link.handle}</p>
-              </motion.a>
-            ))}
-          </div>
+      <div className="container">
+
+        <motion.div {...fadeUp}>
+          <p className="section-label">Contact</p>
+          <h2 style={headingStyle}>Let's work together</h2>
         </motion.div>
-        
-        <motion.form 
-          ref={form}
-          onSubmit={handleSubmit}
-          style={formStyle} 
-          className="glass"
-          initial={{ opacity: 0, x: 30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          <div style={formGroupStyle}>
-            <label style={labelStyle}>Name</label>
-            <input type="text" name="user_name" required className="form-input" placeholder="Your name" />
-          </div>
-          <div style={formGroupStyle}>
-            <label style={labelStyle}>Email</label>
-            <input type="email" name="user_email" required className="form-input" placeholder="you@example.com" />
-          </div>
-          <div style={formGroupStyle}>
-            <label style={labelStyle}>Message</label>
-            <textarea required name="message" className="form-input" style={{minHeight: '150px', resize: 'vertical'}} placeholder="Say hello..."></textarea>
-          </div>
-          
-          {isSuccess ? (
-             <motion.div 
-                initial={{opacity:0, scale: 0.9}} 
-                animate={{opacity:1, scale: 1}} 
-                style={successBannerStyle}
-             >
-               ✨ Message sent successfully! I'll get back to you soon.
-             </motion.div>
-          ) : (
-            <motion.button 
-              type="submit" 
-              disabled={isSubmitting}
-              style={{...submitButtonStyle, opacity: isSubmitting ? 0.7 : 1}}
-              whileHover={!isSubmitting ? { scale: 1.02 } : {}}
-              whileTap={!isSubmitting ? { scale: 0.98 } : {}}
-            >
-              {isSubmitting ? 'Sending...' : 'Send Message'}
-            </motion.button>
-          )}
-        </motion.form>
+
+        <div style={layoutStyle}>
+
+          {/* Left — info */}
+          <motion.div
+            {...fadeUp}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            style={infoColStyle}
+          >
+            <p style={descStyle}>
+              I'm currently open to freelance projects and full-time roles.
+              If you have something in mind — or just want to say hi — drop me a message.
+            </p>
+
+            <div style={contactLinksStyle}>
+              {socialLinks.map(link => (
+                <a
+                  key={link.platform}
+                  href={link.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  style={contactLinkStyle}
+                >
+                  <span style={platformStyle}>{link.platform}</span>
+                  <span style={handleStyle}>{link.handle}</span>
+                </a>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Right — form */}
+          <motion.form
+            ref={form}
+            onSubmit={handleSubmit}
+            className="card"
+            style={formStyle}
+            {...fadeUp}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            <div style={fieldStyle}>
+              <label style={labelStyle}>Name</label>
+              <input
+                type="text"
+                name="user_name"
+                required
+                className="form-input"
+                placeholder="Your name"
+              />
+            </div>
+            <div style={fieldStyle}>
+              <label style={labelStyle}>Email</label>
+              <input
+                type="email"
+                name="user_email"
+                required
+                className="form-input"
+                placeholder="you@email.com"
+              />
+            </div>
+            <div style={fieldStyle}>
+              <label style={labelStyle}>Message</label>
+              <textarea
+                name="message"
+                required
+                className="form-input"
+                placeholder="Tell me about your project or just say hi..."
+                style={{ minHeight: '130px', resize: 'vertical' }}
+              />
+            </div>
+
+            {isSuccess ? (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.96 }}
+                animate={{ opacity: 1, scale: 1 }}
+                style={successStyle}
+              >
+                Message sent — I'll get back to you soon!
+              </motion.div>
+            ) : (
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                style={{ ...submitStyle, opacity: isSubmitting ? 0.6 : 1 }}
+              >
+                {isSubmitting ? 'Sending…' : 'Send message →'}
+              </button>
+            )}
+          </motion.form>
+
+        </div>
       </div>
     </section>
   );
 };
 
-const sectionStyle = {
-  padding: '6rem 0',
-  position: 'relative'
+/* ── Styles ── */
+const sectionStyle = { padding: '6rem 0 8rem' };
+
+const headingStyle = {
+  fontSize: 'clamp(1.6rem, 3vw, 2.4rem)',
+  fontWeight: '800',
+  letterSpacing: '-0.8px',
+  marginBottom: '3rem',
 };
 
-const containerStyle = {
-  display: 'flex',
-  flexWrap: 'wrap',
-  gap: '2.5rem',
-  justifyContent: 'space-between'
+const layoutStyle = {
+  display: 'grid',
+  gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+  gap: '3rem',
+  alignItems: 'start',
 };
 
-const contentStyle = {
-  flex: '1 1 300px',
-};
+const infoColStyle = {};
 
-const sectionTitleStyle = {
-  fontSize: '2.5rem',
-  marginBottom: '1rem',
-};
-
-const subtitleStyle = {
+const descStyle = {
   color: 'var(--text-secondary)',
+  lineHeight: '1.8',
+  fontSize: '0.97rem',
   marginBottom: '2rem',
-  lineHeight: '1.7'
 };
 
-const infoGridStyle = {
+const contactLinksStyle = {
   display: 'flex',
-  flexWrap: 'wrap',
-  gap: '1rem'
+  flexDirection: 'column',
+  gap: '0',
 };
 
-const infoCardStyle = {
-  flex: 1,
-  minWidth: '120px',
-  padding: '1.5rem',
-  borderRadius: 'var(--radius-md)',
+const contactLinkStyle = {
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  padding: '0.85rem 0',
+  borderBottom: '1px solid var(--border)',
   textDecoration: 'none',
-  color: 'inherit'
+  color: 'inherit',
+};
+
+const platformStyle = {
+  fontSize: '0.8rem',
+  fontFamily: 'var(--font-mono)',
+  color: 'var(--text-muted)',
+  textTransform: 'uppercase',
+  letterSpacing: '0.08em',
+};
+
+const handleStyle = {
+  fontSize: '0.9rem',
+  color: 'var(--text-secondary)',
+  fontWeight: '500',
 };
 
 const formStyle = {
-  flex: '1 1 300px',
   padding: '2rem',
-  borderRadius: 'var(--radius-lg)',
   display: 'flex',
   flexDirection: 'column',
-  gap: '1.5rem'
+  gap: '1.25rem',
 };
 
-const formGroupStyle = {
+const fieldStyle = {
   display: 'flex',
   flexDirection: 'column',
-  gap: '0.5rem'
+  gap: '0.45rem',
 };
 
 const labelStyle = {
-  fontSize: '0.9rem',
-  fontWeight: '500',
-  color: 'var(--text-secondary)'
+  fontSize: '0.8rem',
+  fontFamily: 'var(--font-mono)',
+  color: 'var(--text-muted)',
+  textTransform: 'uppercase',
+  letterSpacing: '0.08em',
 };
 
-const submitButtonStyle = {
-  background: 'var(--gradient-vibrant)',
+const submitStyle = {
+  background: 'var(--accent)',
   color: '#fff',
-  padding: '1rem',
+  padding: '0.85rem 1.5rem',
   borderRadius: 'var(--radius-md)',
   fontWeight: '600',
-  marginTop: '0.5rem',
-  boxShadow: '0 4px 14px rgba(139, 92, 246, 0.4)',
+  fontSize: '0.92rem',
   border: 'none',
-  cursor: 'pointer'
+  cursor: 'pointer',
+  alignSelf: 'flex-start',
 };
 
-const successBannerStyle = {
-  background: 'rgba(16, 185, 129, 0.1)',
-  border: '1px solid rgba(16, 185, 129, 0.5)',
-  color: '#10b981',
-  padding: '1rem',
-  borderRadius: 'var(--radius-md)',
-  textAlign: 'center',
-  fontWeight: '500'
-}
+const successStyle = {
+  background: 'rgba(74,222,128,0.07)',
+  border: '1px solid rgba(74,222,128,0.3)',
+  color: '#4ade80',
+  padding: '0.875rem 1rem',
+  borderRadius: 'var(--radius-sm)',
+  fontSize: '0.88rem',
+  fontWeight: '500',
+};
 
 export default Contact;

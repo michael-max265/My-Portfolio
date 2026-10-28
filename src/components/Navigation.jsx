@@ -1,46 +1,67 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { personalDetails, navLinks } from '../data/portfolioData';
+import { navLinks } from '../data/portfolioData';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
-    return () => { document.body.style.overflow = 'auto'; };
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
   }, [isOpen]);
 
   return (
-    <motion.nav 
-      className="glass" 
-      style={navStyle}
-      initial={{ y: -100, opacity: 0 }}
+    <motion.nav
+      style={{
+        ...navStyle,
+        background: scrolled ? 'rgba(13,13,13,0.92)' : 'transparent',
+        borderBottom: scrolled ? '1px solid rgba(255,255,255,0.06)' : '1px solid transparent',
+        backdropFilter: scrolled ? 'blur(12px)' : 'none',
+      }}
+      initial={{ y: -60, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
+      transition={{ duration: 0.5, ease: 'easeOut' }}
     >
       <div className="container" style={navContainerStyle}>
-        <motion.div 
-          style={logoStyle}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          <span className="text-gradient">{personalDetails.name}</span>
-        </motion.div>
+        {/* Logo — initials only, clean */}
+        <a href="#home" style={logoStyle}>
+          MO<span style={{ color: 'var(--accent)' }}>.</span>
+        </a>
 
-        {/* Desktop Links */}
+        {/* Desktop links */}
         <ul style={desktopLinksStyle} className="desktop-nav">
           {navLinks.map((item) => (
-            <motion.li key={item} whileHover={{ y: -2 }} transition={{ type: "spring", stiffness: 300 }}>
-              <a href={`#${item.toLowerCase()}`}>{item}</a>
-            </motion.li>
+            <li key={item}>
+              <a
+                href={`#${item.toLowerCase()}`}
+                style={linkStyle}
+                onMouseEnter={e => e.target.style.color = 'var(--text-primary)'}
+                onMouseLeave={e => e.target.style.color = 'var(--text-secondary)'}
+              >
+                {item}
+              </a>
+            </li>
           ))}
+          <li>
+            <a
+              href="/resume.pdf"
+              target="_blank"
+              rel="noreferrer"
+              style={resumeBtnStyle}
+            >
+              Resume ↗
+            </a>
+          </li>
         </ul>
 
-        {/* Mobile Hamburger Button */}
+        {/* Mobile burger */}
         <button
           className={`mobile-nav-btn ${isOpen ? 'open' : ''}`}
           onClick={() => setIsOpen(!isOpen)}
@@ -52,26 +73,33 @@ const Navigation = () => {
         </button>
       </div>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile overlay */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div 
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: '100vh' }}
-            exit={{ opacity: 0, height: 0 }}
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
             style={mobileOverlayStyle}
-            className="glass"
           >
             <ul style={mobileLinksStyle}>
-              {navLinks.map((item, i) => (
-                <motion.li 
+              {[...navLinks, 'Resume'].map((item, i) => (
+                <motion.li
                   key={item}
-                  initial={{ opacity: 0, x: -20 }}
+                  initial={{ opacity: 0, x: -16 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.1 }}
+                  transition={{ delay: i * 0.06 }}
                   onClick={() => setIsOpen(false)}
                 >
-                  <a href={`#${item.toLowerCase()}`} style={mobileLinkItemStyle}>{item}</a>
+                  <a
+                    href={item === 'Resume' ? '/resume.pdf' : `#${item.toLowerCase()}`}
+                    target={item === 'Resume' ? '_blank' : undefined}
+                    rel={item === 'Resume' ? 'noreferrer' : undefined}
+                    style={mobileLinkItemStyle}
+                  >
+                    {item}
+                  </a>
                 </motion.li>
               ))}
             </ul>
@@ -88,8 +116,8 @@ const navStyle = {
   left: 0,
   right: 0,
   zIndex: 1000,
-  padding: '1rem 0',
-  borderBottom: '1px solid rgba(255, 255, 255, 0.05)',
+  padding: '1.1rem 0',
+  transition: 'background 300ms ease, border-color 300ms ease',
 };
 
 const navContainerStyle = {
@@ -99,18 +127,38 @@ const navContainerStyle = {
 };
 
 const logoStyle = {
-  fontSize: '1.2rem',
-  fontWeight: '700',
+  fontSize: '1.15rem',
+  fontWeight: '800',
   letterSpacing: '-0.5px',
-  cursor: 'pointer'
+  color: 'var(--text-primary)',
+  textDecoration: 'none',
 };
 
 const desktopLinksStyle = {
   display: 'flex',
-  gap: '2rem',
+  gap: '0.25rem',
   listStyle: 'none',
+  alignItems: 'center',
+};
+
+const linkStyle = {
+  color: 'var(--text-secondary)',
+  fontSize: '0.9rem',
   fontWeight: '500',
-  fontSize: '0.95rem'
+  padding: '0.4rem 0.75rem',
+  borderRadius: 'var(--radius-sm)',
+  transition: 'color 150ms ease',
+};
+
+const resumeBtnStyle = {
+  color: 'var(--accent)',
+  fontSize: '0.88rem',
+  fontWeight: '500',
+  padding: '0.45rem 0.9rem',
+  border: '1px solid rgba(79,142,255,0.35)',
+  borderRadius: 'var(--radius-sm)',
+  marginLeft: '0.5rem',
+  transition: 'background 150ms ease',
 };
 
 const mobileOverlayStyle = {
@@ -118,11 +166,13 @@ const mobileOverlayStyle = {
   top: 0,
   left: 0,
   width: '100%',
+  height: '100vh',
+  background: 'rgba(13,13,13,0.97)',
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
   alignItems: 'center',
-  zIndex: 1500
+  zIndex: 1500,
 };
 
 const mobileLinksStyle = {
@@ -130,14 +180,13 @@ const mobileLinksStyle = {
   display: 'flex',
   flexDirection: 'column',
   gap: '2rem',
-  textAlign: 'center'
+  textAlign: 'center',
 };
 
 const mobileLinkItemStyle = {
-  fontSize: '2rem',
+  fontSize: '1.6rem',
   fontWeight: '600',
   color: 'var(--text-primary)',
-  textDecoration: 'none'
 };
 
 export default Navigation;

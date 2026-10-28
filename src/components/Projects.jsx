@@ -2,145 +2,180 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { projectsData } from '../data/portfolioData';
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.2 }
-  }
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+const fadeUp = {
+  initial: { opacity: 0, y: 20 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: '-80px' },
+  transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
 };
 
 const Projects = () => {
   return (
     <section id="projects" style={sectionStyle}>
       <div className="container">
-        <motion.h2 
-          style={sectionTitleStyle}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-        >
-          Featured <span className="text-gradient">Projects</span>
-        </motion.h2>
-        
-        <motion.div 
-          style={gridStyle}
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-        >
-          {projectsData.map(project => (
-            <motion.div 
-              key={project.id} 
-              className="glass" 
+
+        <motion.div {...fadeUp}>
+          <p className="section-label">Work</p>
+          <h2 style={headingStyle}>Selected projects</h2>
+        </motion.div>
+
+        <div className="proj-grid" style={gridStyle}>
+          {projectsData.map((project, i) => (
+            <motion.a
+              key={project.id}
+              href={project.link}
+              target="_blank"
+              rel="noreferrer"
+              className="card"
               style={cardStyle}
-              variants={itemVariants}
-              whileHover={{ y: -8, boxShadow: '0 10px 30px rgba(41, 121, 255, 0.2)' }}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.45, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
+              whileHover="hover"
             >
-              <div style={imagePlaceholderStyle}>
-                {project.image && <img src={project.image} alt={project.title} style={{width: '100%', height: '100%', objectFit: 'cover'}} />}
-              </div>
+              {/* Image */}
+              <motion.div
+                style={imgWrapStyle}
+                variants={{ hover: { scale: 1.02 } }}
+                transition={{ duration: 0.3 }}
+              >
+                {project.image ? (
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    style={imgStyle}
+                    loading="lazy"
+                  />
+                ) : (
+                  <div style={imgPlaceholderStyle} />
+                )}
+              </motion.div>
+
+              {/* Content */}
               <div style={contentStyle}>
-                <h3 style={projectTitleStyle}>{project.title}</h3>
-                <p style={projectDescStyle}>{project.description}</p>
-                <div style={tagsContainerStyle}>
+                <div style={headerRowStyle}>
+                  <h3 style={titleStyle}>{project.title}</h3>
+                  <motion.span
+                    style={arrowStyle}
+                    variants={{ hover: { x: 4, y: -4 } }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    ↗
+                  </motion.span>
+                </div>
+
+                <p style={descStyle}>{project.description}</p>
+
+                <div style={tagsRowStyle}>
                   {project.tags.map(tag => (
                     <span key={tag} style={tagStyle}>{tag}</span>
                   ))}
                 </div>
-                <motion.a 
-                  href={project.link} 
-                  style={linkStyle}
-                  whileHover={{ x: 5, color: 'var(--accent-secondary)' }}
-                >
-                  View Project &rarr;
-                </motion.a>
               </div>
-            </motion.div>
+            </motion.a>
           ))}
-        </motion.div>
+        </div>
+
       </div>
     </section>
   );
 };
 
-const sectionStyle = {
-  padding: '6rem 0',
-};
+/* ── Styles ── */
+const sectionStyle = { padding: '6rem 0' };
 
-const sectionTitleStyle = {
-  fontSize: '2.5rem',
+const headingStyle = {
+  fontSize: 'clamp(1.6rem, 3vw, 2.4rem)',
+  fontWeight: '800',
+  letterSpacing: '-0.8px',
   marginBottom: '3rem',
-  textAlign: 'center'
 };
 
 const gridStyle = {
   display: 'grid',
-  gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-  gap: '2rem'
+  gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
+  gap: '1.25rem',
 };
 
 const cardStyle = {
-  borderRadius: 'var(--radius-lg)',
-  overflow: 'hidden',
   display: 'flex',
   flexDirection: 'column',
+  overflow: 'hidden',
+  textDecoration: 'none',
+  color: 'inherit',
+  cursor: 'pointer',
 };
 
-const imagePlaceholderStyle = {
-  height: '200px',
-  background: 'linear-gradient(45deg, rgba(23, 23, 23, 0.8), rgba(41, 121, 255, 0.2))',
-  borderBottom: '1px solid rgba(255, 255, 255, 0.05)'
+const imgWrapStyle = {
+  width: '100%',
+  aspectRatio: '16/9',
+  overflow: 'hidden',
+  backgroundColor: '#111',
+};
+
+const imgStyle = {
+  width: '100%',
+  height: '100%',
+  objectFit: 'cover',
+  display: 'block',
+};
+
+const imgPlaceholderStyle = {
+  width: '100%',
+  height: '100%',
+  background: '#1a1a1a',
 };
 
 const contentStyle = {
-  padding: '1.5rem',
-  flex: 1,
+  padding: '1.25rem 1.25rem 1.5rem',
   display: 'flex',
-  flexDirection: 'column'
+  flexDirection: 'column',
+  gap: '0.6rem',
+  flex: 1,
 };
 
-const projectTitleStyle = {
-  fontSize: '1.25rem',
-  marginBottom: '0.5rem'
+const headerRowStyle = {
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'flex-start',
+  gap: '0.5rem',
 };
 
-const projectDescStyle = {
+const titleStyle = {
+  fontSize: '1rem',
+  fontWeight: '600',
+  color: 'var(--text-primary)',
+  lineHeight: '1.4',
+};
+
+const arrowStyle = {
+  fontSize: '1rem',
+  color: 'var(--text-muted)',
+  flexShrink: 0,
+};
+
+const descStyle = {
+  fontSize: '0.875rem',
   color: 'var(--text-secondary)',
-  marginBottom: '1.5rem',
-  fontSize: '0.95rem',
-  flex: 1
+  lineHeight: '1.65',
+  flex: 1,
 };
 
-const tagsContainerStyle = {
+const tagsRowStyle = {
   display: 'flex',
   flexWrap: 'wrap',
-  gap: '0.5rem',
-  marginBottom: '1.5rem'
+  gap: '0.4rem',
+  marginTop: '0.5rem',
 };
 
 const tagStyle = {
-  fontSize: '0.8rem',
-  color: 'var(--accent-secondary)',
-  background: 'rgba(41, 121, 255, 0.1)',
-  padding: '0.2rem 0.6rem',
-  borderRadius: 'var(--radius-sm)'
-};
-
-const linkStyle = {
-  fontWeight: '600',
-  color: 'var(--text-primary)',
-  display: 'inline-flex',
-  alignItems: 'center',
-  marginTop: 'auto',
-  textDecoration: 'none'
+  fontSize: '0.72rem',
+  fontFamily: 'var(--font-mono)',
+  color: 'var(--text-muted)',
+  padding: '0.2rem 0.55rem',
+  border: '1px solid var(--border)',
+  borderRadius: '4px',
 };
 
 export default Projects;
