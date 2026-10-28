@@ -20,6 +20,14 @@ export const techStack = [
 
 export const projectsData = [
   {
+    id: 7,
+    title: 'MellyStore — Luxury E-Commerce & Atelier',
+    description: 'An editorial luxury womenswear storefront featuring live multi-currency conversion, an intelligent styling concierge, a multi-channel payment sandbox with dynamic BIN detection (Visa, Mastercard, Verve, Apple Pay, NIBSS), digital email receipts, and a PIN-secured atelier admin terminal.',
+    tags: ['React 19', 'TypeScript', 'Tailwind CSS', 'Vite', 'E-Commerce'],
+    link: 'https://melly-store-seven.vercel.app/',
+    image: '/ecommerce.png'
+  },
+  {
     id: 6,
     title: 'Car Rental & 3D Showroom',
     description: 'A premium full-stack car rental platform with an interactive 3D WebGL showroom, integrated multi-payment core (Stripe, Paystack, Flutterwave), and a complete admin fleet analytics dashboard.',
