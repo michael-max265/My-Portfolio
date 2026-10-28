@@ -40,7 +40,7 @@ const Navigation = () => {
         >
           <span style={logoTextStyle}>MO</span>
           <span style={{ color: 'var(--accent-light)', fontSize: '1.4rem' }}>.</span>
-          <span style={roleBadgeStyle}>Fullstack</span>
+          <span style={roleBadgeStyle}>Frontend</span>
         </motion.a>
 
         {/* Desktop links */}

@@ -16,7 +16,7 @@ const About = () => {
         <motion.div {...fadeUp}>
           <span className="section-label">Engineering Profile</span>
           <h2 style={headingStyle}>
-            Fullstack engineering with architectural clarity
+            Frontend engineering with design precision
           </h2>
         </motion.div>
 
@@ -30,16 +30,15 @@ const About = () => {
           >
             <p style={paraStyle}>
               I'm <strong style={{ color: 'var(--text-primary)' }}>Michael Okpara</strong>, a 
-              Fullstack Developer focused on creating reliable, scalable web products. 
-              I operate across the entire lifecycle: from crafting sleek, accessible React interfaces 
-              to structuring Node.js / Express backends, database relations, and deployment pipelines.
+              Frontend Developer focused on crafting modern, performant, and beautifully interactive web products. 
+              I specialize in turning complex designs into responsive, accessible, and fluid user experiences.
             </p>
             <p style={{ ...paraStyle, marginTop: '1.25rem' }}>
               My engineering philosophy revolves around three core tenets: 
-              <span style={{ color: 'var(--text-primary)', fontWeight: 600 }}> clean modular code</span>, 
+              <span style={{ color: 'var(--text-primary)', fontWeight: 600 }}> clean modular components</span>, 
               <span style={{ color: 'var(--text-primary)', fontWeight: 600 }}> sub-second load times</span>, and 
-              <span style={{ color: 'var(--text-primary)', fontWeight: 600 }}> frictionless developer-to-user workflows</span>. 
-              Whether developing multi-currency checkout gateways or real-time analytics hubs, I take ownership from concept to production.
+              <span style={{ color: 'var(--text-primary)', fontWeight: 600 }}> intuitive micro-interactions</span>. 
+              Whether developing luxury e-commerce storefronts, 3D showrooms, or data visualization dashboards, I deliver pixel-perfect precision.
             </p>
 
             <div style={quickFactsStyle}>
@@ -52,7 +51,7 @@ const About = () => {
             </div>
           </motion.div>
 
-          {/* Fullstack Capability Pillars */}
+          {/* Frontend Capability Pillars */}
           <motion.div
             {...fadeUp}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -96,28 +95,28 @@ const About = () => {
 };
 
 const facts = [
-  { label: 'Role',          value: 'Fullstack Developer' },
-  { label: 'Frontend Core',  value: 'React 19, TypeScript, Tailwind' },
-  { label: 'Backend Core',   value: 'Node.js, Express, REST APIs' },
-  { label: 'Databases',      value: 'PostgreSQL, MongoDB, Firebase' },
+  { label: 'Role',          value: 'Frontend Developer' },
+  { label: 'Core Stack',    value: 'React 19, TypeScript, Vite' },
+  { label: 'Styling & UI',  value: 'Tailwind CSS, Framer Motion, CSS3' },
+  { label: 'Integrations',  value: 'REST APIs, Three.js, Auth' },
   { label: 'Availability',  value: 'Full-time / Contract / Remote' },
 ];
 
 const skillCategories = [
   {
-    title: 'Frontend & UI Architecture',
+    title: 'Frontend Architecture & Frameworks',
     icon: '⚡',
-    skills: ['React 19', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'State Management (Zustand)']
+    skills: ['React 19', 'Next.js', 'TypeScript', 'JavaScript (ES6+)', 'Tailwind CSS', 'Vite']
   },
   {
-    title: 'Backend, APIs & Auth',
-    icon: '⚙️',
-    skills: ['Node.js', 'Express', 'RESTful APIs', 'JWT & OAuth', 'Payment Gateways (Stripe, Paystack)']
+    title: 'Motion & Interactive UI',
+    icon: '✨',
+    skills: ['Framer Motion', 'Three.js / WebGL', 'Responsive Design', 'CSS Modules', 'Zustand']
   },
   {
-    title: 'Databases & Infrastructure',
-    icon: '🗄️',
-    skills: ['PostgreSQL', 'MongoDB', 'Firebase', 'Vercel / Cloud CI/CD', 'Git & Agile']
+    title: 'Tooling & Integration',
+    icon: '🛠️',
+    skills: ['REST APIs', 'Git / GitHub', 'Performance Optimization', 'Figma to Code', 'Vercel']
   }
 ];
 

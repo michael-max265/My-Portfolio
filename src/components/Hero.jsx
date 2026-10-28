@@ -17,19 +17,19 @@ const Hero = () => {
         <div style={leftStyle}>
           <motion.div {...fadeUp(0.1)} style={availContainerStyle}>
             <span className="status-beacon" />
-            <span style={availTextStyle}>Available for fullstack engineering roles & projects</span>
+            <span style={availTextStyle}>Available for frontend engineering roles & projects</span>
           </motion.div>
 
           <motion.h1 {...fadeUp(0.2)} style={headingStyle}>
             Hi, I'm Michael.<br />
             <span style={highlightTitleStyle}>
-              Fullstack Engineer & Architect.
+              Frontend Developer & UI Engineer.
             </span>
           </motion.h1>
 
           <motion.p {...fadeUp(0.3)} style={bioStyle}>
-            I design and build end-to-end digital products — from responsive, pixel-perfect frontend 
-            interfaces to resilient backend microservices, secure APIs, and database architectures.
+            I design and build modern web applications — crafting responsive, pixel-perfect user 
+            interfaces, fluid motion interactions, and high-performance digital experiences.
           </motion.p>
 
           <motion.div {...fadeUp(0.4)} style={ctaRowStyle}>
@@ -114,7 +114,7 @@ const Hero = () => {
                 <span style={{ ...trafficDotStyle, background: '#f59e0b' }} />
                 <span style={{ ...trafficDotStyle, background: '#10b981' }} />
               </div>
-              <span style={terminalTitleStyle}>michael@fullstack: ~</span>
+              <span style={terminalTitleStyle}>michael@frontend: ~</span>
             </div>
 
             <div style={terminalBodyStyle}>
@@ -128,16 +128,16 @@ const Hero = () => {
               <p style={codeLineStyle}>
                 <span style={{ color: 'var(--text-muted)' }}>2</span>{' '}
                 <span style={{ color: '#818cf8' }}>const</span>{' '}
-                <span style={{ color: '#93c5fd' }}>capabilities</span>{' '}
+                <span style={{ color: '#93c5fd' }}>focus</span>{' '}
                 <span style={{ color: 'var(--text-muted)' }}>=</span>{' '}
-                <span style={{ color: '#fbcfe8' }}>['Frontend', 'Backend', 'APIs', 'Cloud']</span>;
+                <span style={{ color: '#fbcfe8' }}>['React', 'TypeScript', 'Tailwind', 'Motion']</span>;
               </p>
               <p style={codeLineStyle}>
                 <span style={{ color: 'var(--text-muted)' }}>3</span>{' '}
                 <span style={{ color: '#818cf8' }}>const</span>{' '}
                 <span style={{ color: '#93c5fd' }}>status</span>{' '}
                 <span style={{ color: 'var(--text-muted)' }}>=</span>{' '}
-                <span style={{ color: '#fed7aa' }}>'Building scalable systems'</span>;
+                <span style={{ color: '#fed7aa' }}>'Crafting modern UI/UX'</span>;
               </p>
               <p style={{ ...codeLineStyle, marginTop: '0.4rem' }}>
                 <span style={{ color: 'var(--text-muted)' }}>4</span>{' '}
@@ -155,9 +155,9 @@ const Hero = () => {
 
 const stats = [
   { value: '5+', label: 'Shipped Projects' },
-  { value: 'Full-Cycle', label: 'Architecture & UI' },
+  { value: 'Pixel-Perfect', label: 'UI / UX Precision' },
   { value: '100%', label: 'Commitment & Speed' },
-  { value: 'End-to-End', label: 'Stack Mastery' },
+  { value: 'Modern Web', label: 'Stack Mastery' },
 ];
 
 /* ── Styles ── */

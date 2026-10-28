@@ -33,7 +33,7 @@ function App() {
         <div className="container" style={footerInnerStyle}>
           <div style={brandColStyle}>
             <span style={footerLogoStyle}>MO<span style={{ color: 'var(--accent-light)' }}>.</span></span>
-            <span style={footerSubStyle}>Fullstack Engineering</span>
+            <span style={footerSubStyle}>Frontend Engineering</span>
           </div>
 
           <p style={footerTextStyle}>

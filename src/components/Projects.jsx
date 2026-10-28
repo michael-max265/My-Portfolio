@@ -16,10 +16,10 @@ const Projects = () => {
 
         <motion.div {...fadeUp}>
           <span className="section-label">Production Portfolio</span>
-          <h2 style={headingStyle}>Featured Fullstack Deployments</h2>
+          <h2 style={headingStyle}>Featured Frontend Projects</h2>
           <p style={subheadingStyle}>
-            A curated collection of web applications featuring 3D experiences, payment infrastructures, 
-            e-commerce ateliers, and analytical dashboards.
+            A curated collection of web applications featuring 3D experiences, payment sandboxes, 
+            e-commerce storefronts, and analytical dashboards.
           </p>
         </motion.div>
 

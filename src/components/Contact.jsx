@@ -54,7 +54,7 @@ const Contact = () => {
             style={infoColStyle}
           >
             <p style={descStyle}>
-              Whether you're looking to build a new fullstack product from scratch, optimize an existing architecture, 
+              Whether you're looking to build a new web application, bring an interactive design to life, 
               or discuss an engineering role — my inbox is always open.
             </p>
 
